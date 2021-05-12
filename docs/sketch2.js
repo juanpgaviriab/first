@@ -1,4 +1,4 @@
-var speechRec = new p5.SpeechRec('es-CO',gotSpeech);
+var speechRec = new p5.SpeechRec('es-MX',gotSpeech);
 let continuous = true;
 let interim = false;
 
@@ -95,7 +95,7 @@ texto();
     wy = num1 + 500;
       resizeCanvas(windowWidth,wy);
 
-texto();
+texto(); 
 
     }
 }
