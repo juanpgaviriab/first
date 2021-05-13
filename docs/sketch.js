@@ -9,13 +9,13 @@ let ty;
 let myArray = [];
 let timeDate = [];
 let regular;
+let bold;
 let tex;
 let num1;
 
 function preload() {
-  regular = loadFont('files/EBGaramond-Regular.ttf');
-  let bolditalic = loadFont('files/EBGaramond-ExtraBoldItalic.ttf');
-  let italic = loadFont('files/EBGaramond-Italic.ttf');
+  regular = loadFont('files/B612Mono-Regular.ttf');
+  //bold = loadFont('files/B612Mono-Bold.ttf');
 }
 
 function setup() {
@@ -34,23 +34,26 @@ infopage();
 }
 
 function infopage(){
+  background(255,255,0);
   textSize(12);
-  text('ESTA ES UNA PÁGINA DE PRUEBA', 10,20);
+  noStroke();
+  text('Háblame: ', 10,20);
+  stroke(0);
+  line(10,100,200,100);
 }
 
 function texto(){
-  background(255,255,0);
+
   infopage();
 
   let rev = myArray.reverse();
-  print(myArray);
-  print(rev);
-  tex = createP(join(rev,"<br/><br/>"));
-  tex.html('- ' + join(rev,"<br/><br/>"));
-  tex.style('font-size', '70px');
-  tex.style('background', '#FFFF00');
+  tex = createP('> ' + join(rev,"<br/><br/>"));
+  tex.html('> ' + join(rev,"<br/><br/>"));
+  tex.style('background', 'rgb(255, 255, 0)');
+  tex.style('font-family','monospace');
+  tex.style('font-size', '15px');
   tex.size(windowWidth/2);
-  tex.position(50,50);
+  tex.position(250,100);
   rev = myArray.reverse();
   num1 = tex.elt.offsetHeight;
   let num2 = tex.elt.height;
@@ -74,8 +77,11 @@ function draw(){
 
 function mouseWheel(){
 
-  //if(ty > windowHeight){
+  if(num1 > windowHeight){
       wy = num1 + 500;
+  }else {
+    wy = windowHeight
+  }
       resizeCanvas(windowWidth,wy);
 
 texto();
@@ -85,7 +91,12 @@ texto();
 
 function windowResized() {
 
-  wy = num1 + 500;
+if(num1 > windowHeight){
+    wy = num1 + 500;
+}else {
+  wy = windowHeight
+}
+
   resizeCanvas(windowWidth,wy);
 
 texto();
